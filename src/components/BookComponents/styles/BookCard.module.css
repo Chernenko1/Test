@@ -1,0 +1,29 @@
+.main {
+    background-color: rgba(226, 221, 213, 0.614);
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.image {
+    max-width: 150px;
+    max-height: 150px;
+}
+
+.imageContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.infoContainer p{
+    color: gray;
+}
+
+.bookInfo {
+    row-gap: 0px;
+}
+
+.bookInfo > p {
+    margin-bottom: 0px;
+    margin-top: 10px;
+}
