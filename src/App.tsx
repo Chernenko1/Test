@@ -9,10 +9,17 @@ function App() {
   const [order, setOrder] = useState('relevance')
   const [input, setInput] = useState('')
 
-  const {data, isLoading, isError,isSuccess,error} = useGetBooksQuery({name: input, order, category})
-
+  
   const books = useAppSelector(state => state.books.books)
 
+  console.log(books)
+
+  const {data, isLoading, isError,isSuccess,error, refetch} = useGetBooksQuery({name: input, order, category})
+
+  function search () {
+    refetch()
+  }
+  
 
   // if(isLoading) {
   //   console.log('load')
@@ -24,7 +31,7 @@ function App() {
 
   return (
     <>
-      <Header setInput={setInput} setCategory={setCategory} setOrder={setOrder}/>
+      <Header setInput={setInput} setCategory={setCategory} setOrder={setOrder} search={search}/>
       <BooksList books={books}/>
     </>
   )

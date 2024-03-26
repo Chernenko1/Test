@@ -6,9 +6,10 @@ interface IHeader {
     setCategory: (val: string) => void,
     setOrder: (val: string) => void,
     setInput: (val: string) => void
+    search: () => void
 }
 
-export const Header = ({setCategory, setInput, setOrder}: IHeader) => {
+export const Header = ({setCategory, setInput, setOrder,search}: IHeader) => {
 
     function handleSubmit () {
        
@@ -32,7 +33,7 @@ export const Header = ({setCategory, setInput, setOrder}: IHeader) => {
                 <h1 className={style.headerTitle}>Search for books</h1>
                     <label>
                         <input name='search' type='search' onChange={(e) => changeInput(e)} />
-                        <button title='поиск' type='submit' onClick={handleSubmit}><IoSearch /></button>
+                        <button title='поиск' type='submit' onClick={search}><IoSearch /></button>
                     </label>
                     
                     <div className={style.selectionWrapper}>

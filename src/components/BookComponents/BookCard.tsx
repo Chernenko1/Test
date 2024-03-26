@@ -4,14 +4,15 @@ interface IBookCard {
     category: string,
     bookName: string,
     authors: string[],
-    id: string
+    id: string,
+    img: string
 }
 
-export const BookCard = ({category, bookName, authors, id}: IBookCard) => {
+export const BookCard = ({category, bookName, authors, id, img}: IBookCard) => {
     return (
         <article className={style.main} key={id}>
             <article className={style.imageContainer}>
-                <img className={style.image} src='https://free-png.ru/wp-content/uploads/2022/11/free-png.ru-355.png'/>
+                <img className={style.image} src={img}/>
             </article>
             <article className={style.infoContainer}>
                 <p>{category}</p>

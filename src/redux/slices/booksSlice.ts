@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 
 interface IBooksState {
-    books: [{bookName: string, categories: string[], authors: string[], id: string}]
+    books: [{bookName: string, categories: string[], authors: string[], id: string, image: string}]
 }
 
 const initialState: IBooksState = {
@@ -14,7 +14,7 @@ export const booksSlice = createSlice({
     initialState,
     reducers: {
         setBooks: (state, action) => {
-          state.books.push(action.payload)
+          state.books = action.payload
         },
         addBooks: (state, action) => {
             // state.books = [...state.books,action.payload]

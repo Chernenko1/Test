@@ -3,6 +3,7 @@ import { setBooks } from "../slices/booksSlice";
 
 // console.log(process.env.VITE_API_KEY)
 
+
 export const booksApi = createApi({
     reducerPath: 'bookApi',
     baseQuery: fetchBaseQuery({baseUrl: 'https://www.googleapis.com/books/v1/volumes',}),
@@ -11,15 +12,20 @@ export const booksApi = createApi({
             query: ({name, category, sort}) => `?q=intitle:${name}+subject:${category}&maxResults=30&orderBy${sort}&key=${import.meta.env.VITE_API_KEY}`,
             async onQueryStarted ({}, {queryFulfilled, dispatch}) {
                 try {
+                    let booksArr = []
                     const {data} = await queryFulfilled
-                    data.items.map((item: {id: string, volumeInfo: {title: string, authors: string[], categories: string[]}}) => 
-                        dispatch(setBooks({
+                    data.items.map((item: {id: string, volumeInfo: {title: string, authors: string[], categories: string[], imageLinks: {smallThumbnail: string}}}) => 
+                    {
+                        booksArr.push({
                             id: item.id, 
                             bookName: item.volumeInfo.title, 
                             authors: item.volumeInfo.authors ?? [''],
-                            categories: item.volumeInfo.categories ?? ['']
-                        }
-                    )))
+                            categories: item.volumeInfo.categories ?? [''],
+                            image: item.volumeInfo.imageLinks.smallThumbnail
+                        })
+                    })
+                    // console.log(booksArr)
+                    dispatch(setBooks(booksArr))
                 } catch (error) {
                     console.log(error)
                 }

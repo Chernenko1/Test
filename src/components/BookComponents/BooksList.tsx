@@ -48,7 +48,14 @@ export const BooksList = ({books}: IBooksList) => {
   
   return (
     <article className={style.main}>
-         {books.map((book, ind) => <BookCard key={ind} category={book.categories[0]} bookName={book.bookName} authors={book.authors} id={book.id}/>)}
+         {books.map((book, ind) => <BookCard 
+                                      key={ind} 
+                                      category={book.categories[0]} 
+                                      bookName={book.bookName} 
+                                      authors={book.authors} 
+                                      id={book.id} 
+                                      img={book.image}
+         />)}
     </article>
   )
 }
