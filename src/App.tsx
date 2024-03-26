@@ -12,9 +12,7 @@ function App() {
   
   const books = useAppSelector(state => state.books.books)
 
-  console.log(books)
-
-  const {data, isLoading, isError,isSuccess,error, refetch} = useGetBooksQuery({name: input, order, category})
+  const {data, isLoading, isError,isSuccess,error, refetch} = useGetBooksQuery({name: input, category, sort:order})
 
   function search () {
     refetch()

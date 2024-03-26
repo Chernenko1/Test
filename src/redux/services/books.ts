@@ -9,11 +9,12 @@ export const booksApi = createApi({
     baseQuery: fetchBaseQuery({baseUrl: 'https://www.googleapis.com/books/v1/volumes',}),
     endpoints: builder => ({
         getBooks: builder.query({
-            query: ({name, category, sort}) => `?q=intitle:${name}+subject:${category}&maxResults=30&orderBy${sort}&key=${import.meta.env.VITE_API_KEY}`,
+            query: ({name, category, sort}) => `?q=intitle:${name}+subject:${category}&maxResults=30&orderBy=${sort}&key=${import.meta.env.VITE_API_KEY}`,
             async onQueryStarted ({}, {queryFulfilled, dispatch}) {
                 try {
                     let booksArr = []
                     const {data} = await queryFulfilled
+                    if(data.totalItems !== 0) {
                     data.items.map((item: {id: string, volumeInfo: {title: string, authors: string[], categories: string[], imageLinks: {smallThumbnail: string}}}) => 
                     {
                         booksArr.push({
@@ -23,9 +24,12 @@ export const booksApi = createApi({
                             categories: item.volumeInfo.categories ?? [''],
                             image: item.volumeInfo.imageLinks.smallThumbnail
                         })
-                    })
-                    // console.log(booksArr)
+                    }) 
                     dispatch(setBooks(booksArr))
+                } else {
+
+                    dispatch(setBooks([]))
+                }
                 } catch (error) {
                     console.log(error)
                 }
