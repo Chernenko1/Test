@@ -16,9 +16,10 @@ export const BookCard = ({category, bookName, authors, id}: IBookCard) => {
             <article className={style.infoContainer}>
                 <p>{category}</p>
                 <section className={style.bookInfo}>
-                    <p style={{fontWeight: 'bold', color: 'black'}}>{bookName}</p>
+                    <p style={{fontWeight: 'bold', color: 'black', }}>{bookName}</p>
                     <div style={{display: 'flex', columnGap: 5, alignItems: 'flex-start', justifyContent: 'flex-start'}}>
-                        {authors.map(item => <p>{item}</p>)}
+                        {/* {authors.map((item, ind) => <p style={{whiteSpace:'normal'}} key={ind}>{item}</p>)} */}
+                        <p>{authors.join(' | ')}</p>
                     </div>
                 </section>
             </article>
