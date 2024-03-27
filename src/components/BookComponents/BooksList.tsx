@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import { useAppSelector } from '../../redux/hooks'
 import { LoadSpinner } from '../LoadSpinner/LoadSpinner'
 import { BookCard } from './BookCard'
@@ -8,8 +9,9 @@ interface IBookList {
   load: () => void
 }
 
-export const BooksList = ({ isLoading, load }: IBookList) => {
+export const BooksList = memo(function BookList({ isLoading, load }: IBookList) {
   const { books, totalItems } = useAppSelector((state) => state.books)
+  console.log(isLoading)
 
   return (
     <article>
@@ -40,4 +42,4 @@ export const BooksList = ({ isLoading, load }: IBookList) => {
       )}
     </article>
   )
-}
+})

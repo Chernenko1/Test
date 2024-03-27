@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import { Header } from './components/Header/Header'
 import { BooksList } from './components/BookComponents/BooksList'
 import { useGetBooksQuery } from './redux/services/books'
@@ -21,9 +21,13 @@ function App() {
     setSearchData({ category, name: input, sort: order, startIndex: 0 })
   }
 
-  function loadMore() {
+  function handleLoad() {
     setSearchData({ category, name: input, sort: order, startIndex: books.length + 1 })
   }
+
+  const loadMore = useCallback(() => {
+    setSearchData({ category, name: input, sort: order, startIndex: books.length + 1 })
+  }, [])
 
   return (
     <BrowserRouter>
