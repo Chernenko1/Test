@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice, current, PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from '../store'
 
 interface IBooksState {
@@ -17,7 +17,8 @@ export const booksSlice = createSlice({
       state.books = action.payload
     },
     addBooks: (state, action) => {
-      // state.books = [...state.books,action.payload]
+      let a = current(state.books)
+      state.books = [...a, ...action.payload]
     },
   },
 })
