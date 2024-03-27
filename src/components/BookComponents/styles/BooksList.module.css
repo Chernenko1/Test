@@ -1,27 +1,50 @@
-
-@media (min-width: 900px){
-    .main {
+@media (min-width: 900px) {
+  .main {
     display: grid;
-    grid-template-columns: repeat(3,1fr);
+    grid-template-columns: repeat(3, 1fr);
     /* grid-template-rows: repeat(3,1fr); */
     grid-gap: 2vw;
-    }
+  }
 }
 
-@media (min-width: 500px) and (max-width: 900px){
-    .main {
+@media (min-width: 500px) and (max-width: 900px) {
+  .main {
     display: grid;
-    grid-template-columns: repeat(2,1fr);
+    grid-template-columns: repeat(2, 1fr);
     /* grid-template-rows: repeat(3,1fr); */
     grid-gap: 2vw;
-    }
+  }
 }
 
-@media (max-width: 500px){
-    .main {
+@media (max-width: 500px) {
+  .main {
     display: grid;
-    grid-template-columns: repeat(1,1fr);
+    grid-template-columns: repeat(1, 1fr);
     /* grid-template-rows: repeat(3,1fr); */
     grid-gap: 2vw;
-    }
+  }
+}
+
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #4caf50;
+  border: none;
+  border-radius: 5px;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.3s;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #45a049;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
 }
