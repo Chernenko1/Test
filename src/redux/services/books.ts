@@ -14,7 +14,10 @@ export const booksApi = createApi({
           const { data } = await queryFulfilled
           if (data.totalItems !== 0) {
             data.items.map(
-              (item: {
+              ({
+                volumeInfo,
+                id,
+              }: {
                 id: string
                 volumeInfo: {
                   title: string
@@ -24,11 +27,12 @@ export const booksApi = createApi({
                 }
               }) => {
                 booksArr.push({
-                  id: item.id,
-                  bookName: item.volumeInfo.title,
-                  authors: item.volumeInfo.authors ?? [''],
-                  categories: item.volumeInfo.categories ?? [''],
-                  image: item.volumeInfo.imageLinks.smallThumbnail,
+                  id: id,
+                  bookName: volumeInfo.title,
+                  authors: volumeInfo.authors ?? [''],
+                  categories: volumeInfo.categories ?? [''],
+                  image: volumeInfo.imageLinks.smallThumbnail,
+                  title: volumeInfo.title,
                 })
               },
             )
