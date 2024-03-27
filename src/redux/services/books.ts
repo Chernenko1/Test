@@ -23,7 +23,8 @@ export const booksApi = createApi({
                   title: string
                   authors: string[]
                   categories: string[]
-                  imageLinks: { smallThumbnail: string }
+                  imageLinks: { thumbnail: string }
+                  description: string
                 }
               }) => {
                 booksArr.push({
@@ -31,8 +32,8 @@ export const booksApi = createApi({
                   bookName: volumeInfo.title,
                   authors: volumeInfo.authors ?? [''],
                   categories: volumeInfo.categories ?? [''],
-                  image: volumeInfo.imageLinks.smallThumbnail,
-                  title: volumeInfo.title,
+                  image: volumeInfo.imageLinks.thumbnail,
+                  description: volumeInfo.description,
                 })
               },
             )

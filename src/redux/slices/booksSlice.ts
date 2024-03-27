@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from '../store'
 
 interface IBooksState {
-  books: [{ bookName: string; categories: string[]; authors: string[]; id: string; image: string; title: string }]
+  books: [{ bookName: string; categories: string[]; authors: string[]; id: string; image: string; description: string }]
 }
 
 const initialState: IBooksState = {
