@@ -4,6 +4,7 @@ import { IoSearch } from 'react-icons/io5'
 import { SectionList } from '../SectionList/SectionList'
 import { BOOK_CATEGORIES } from '../../constants/BOOK_CATEGORIES'
 import { SORT_TYPES } from '../../constants/SORT_TYPES'
+import { useNavigate } from 'react-router-dom'
 
 interface IHeader {
   setCategory: (val: string) => void
@@ -13,6 +14,13 @@ interface IHeader {
 }
 
 export const Header = ({ setCategory, setInput, setOrder, search }: IHeader) => {
+  const navigate = useNavigate()
+
+  function onSearch() {
+    search()
+    navigate('/')
+  }
+
   function changeInput(event: React.ChangeEvent<HTMLInputElement>) {
     setInput(event.target.value)
   }
@@ -31,7 +39,7 @@ export const Header = ({ setCategory, setInput, setOrder, search }: IHeader) => 
         <h1 className={style.headerTitle}>Search for books</h1>
         <label>
           <input name='search' type='search' onChange={changeInput} />
-          <button title='поиск' type='submit' onClick={search}>
+          <button title='поиск' type='submit' onClick={onSearch}>
             <IoSearch />
           </button>
         </label>

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import style from './styles/BookCard.module.css'
 
 interface IBookCard {
@@ -10,7 +11,7 @@ interface IBookCard {
 
 export const BookCard = ({ category, bookName, authors, id, img }: IBookCard) => {
   return (
-    <article className={style.main} key={id}>
+    <Link to={`${id}`} key={id} className={style.main}>
       <article className={style.imageContainer}>
         <img className={style.image} src={img} />
       </article>
@@ -23,6 +24,6 @@ export const BookCard = ({ category, bookName, authors, id, img }: IBookCard) =>
           </div>
         </section>
       </article>
-    </article>
+    </Link>
   )
 }
