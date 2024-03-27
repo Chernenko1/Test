@@ -5,6 +5,7 @@ import { useGetBooksQuery } from './redux/services/books'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { BookPage } from './pages/BookPage'
 import { useAppSelector } from './redux/hooks'
+import ErrorBoundary from './components/Error/ErrorBoundary'
 
 function App() {
   const [category, setCategory] = useState('')
@@ -28,7 +29,14 @@ function App() {
     <BrowserRouter>
       <Header setInput={setInput} setCategory={setCategory} setOrder={setOrder} search={search} isLoad={isFetching} />
       <Routes>
-        <Route path='/' element={<BooksList isLoading={isFetching} load={loadMore} />} />
+        <Route
+          path='/'
+          element={
+            <ErrorBoundary>
+              <BooksList isLoading={isFetching} load={loadMore} />
+            </ErrorBoundary>
+          }
+        />
         <Route path='/:id' element={<BookPage />} />
       </Routes>
     </BrowserRouter>

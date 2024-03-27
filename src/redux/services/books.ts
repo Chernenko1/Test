@@ -23,7 +23,6 @@ export const booksApi = createApi({
         try {
           let booksArr: IBookReq[] = []
           const { data } = await queryFulfilled
-          console.log(1)
           if (data.totalItems !== 0) {
             data.items.map(({ volumeInfo, id }: IBookReq) => {
               booksArr.push({
@@ -42,7 +41,7 @@ export const booksApi = createApi({
             dispatch(setBooks({ books: [], totalItems: 0 }))
           }
         } catch (error) {
-          console.log(error)
+          return { message: error }
         }
       },
     }),
