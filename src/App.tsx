@@ -12,7 +12,7 @@ function App() {
   const [input, setInput] = useState('')
   const [searchData, setSearchData] = useState({ name: '', category: '', sort: 'relevance', startIndex: 0 })
 
-  const { isLoading, isError, error, isSuccess } = useGetBooksQuery(searchData)
+  const { isFetching } = useGetBooksQuery(searchData)
 
   const books = useAppSelector((state) => state.books.books)
 
@@ -21,15 +21,14 @@ function App() {
   }
 
   function loadMore() {
-    console.log(1)
     setSearchData({ category, name: input, sort: order, startIndex: books.length + 1 })
   }
 
   return (
     <BrowserRouter>
-      <Header setInput={setInput} setCategory={setCategory} setOrder={setOrder} search={search} isLoad={isLoading} />
+      <Header setInput={setInput} setCategory={setCategory} setOrder={setOrder} search={search} isLoad={isFetching} />
       <Routes>
-        <Route path='/' element={<BooksList isLoading={isLoading} load={loadMore} />} />
+        <Route path='/' element={<BooksList isLoading={isFetching} load={loadMore} />} />
         <Route path='/:id' element={<BookPage />} />
       </Routes>
     </BrowserRouter>

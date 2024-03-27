@@ -9,12 +9,16 @@ interface IBookList {
 }
 
 export const BooksList = ({ isLoading, load }: IBookList) => {
-  const books = useAppSelector((state) => state.books.books)
+  const { books, totalItems } = useAppSelector((state) => state.books)
 
-  return isLoading ? (
-    <LoadSpinner />
-  ) : (
+  return (
     <article>
+      {isLoading && <LoadSpinner />}
+      {!!books.length && (
+        <section className={style.buttonContainer}>
+          <p>Found books: {totalItems}</p>
+        </section>
+      )}
       <section className={style.main}>
         {books.map((book, ind) => (
           <BookCard
@@ -27,10 +31,10 @@ export const BooksList = ({ isLoading, load }: IBookList) => {
           />
         ))}
       </section>
-      {books.length && (
+      {!!books.length && books.length !== totalItems && (
         <section className={style.buttonContainer}>
           <button className={style.button} onClick={load}>
-            Load More
+            {isLoading ? <LoadSpinner /> : 'Load More'}
           </button>
         </section>
       )}

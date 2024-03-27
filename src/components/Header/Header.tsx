@@ -11,9 +11,10 @@ interface IHeader {
   setOrder: (val: string) => void
   setInput: (val: string) => void
   search: () => void
+  isLoad: boolean
 }
 
-export const Header = ({ setCategory, setInput, setOrder, search }: IHeader) => {
+export const Header = ({ setCategory, setInput, setOrder, search, isLoad }: IHeader) => {
   const navigate = useNavigate()
 
   function onSearch() {
