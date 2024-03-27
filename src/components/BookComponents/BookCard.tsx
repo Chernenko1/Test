@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom'
 import style from './styles/BookCard.module.css'
 
+import noImage from '../../assets/img/no-image.jpg'
+
 interface IBookCard {
   category: string
   bookName: string
@@ -13,7 +15,7 @@ export const BookCard = ({ category, bookName, authors, id, img }: IBookCard) =>
   return (
     <Link to={`${id}`} key={id} className={style.bookCard}>
       <article className={style.imageContainer}>
-        <img className={style.image} src={img} />
+        <img className={style.image} src={img || noImage} />
       </article>
       <article className={style.infoContainer}>
         <p>{category}</p>
