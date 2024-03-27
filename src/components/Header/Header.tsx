@@ -21,6 +21,10 @@ export const Header = ({ setCategory, setInput, setOrder, search }: IHeader) => 
     navigate('/')
   }
 
+  function pressKeyboardEnter(event: React.KeyboardEvent<HTMLInputElement>) {
+    if (event.key === 'Enter') onSearch()
+  }
+
   function changeInput(event: React.ChangeEvent<HTMLInputElement>) {
     setInput(event.target.value)
   }
@@ -38,7 +42,7 @@ export const Header = ({ setCategory, setInput, setOrder, search }: IHeader) => 
       <header className={style.header}>
         <h1 className={style.headerTitle}>Search for books</h1>
         <label>
-          <input name='search' type='search' onChange={changeInput} />
+          <input name='search' type='search' onChange={changeInput} onKeyDown={pressKeyboardEnter} />
           <button title='поиск' type='submit' onClick={onSearch}>
             <IoSearch />
           </button>
