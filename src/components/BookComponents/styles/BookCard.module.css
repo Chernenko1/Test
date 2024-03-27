@@ -1,9 +1,15 @@
-.main {
-  background-color: rgba(226, 221, 213, 0.614);
+.bookCard {
+  background-color: rgba(250, 237, 217, 0.614);
   width: 80%;
   padding-top: 10px;
   padding-bottom: 10px;
   border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 5px;
+}
+
+.bookCard:hover {
+  transform: translateY(-12px);
+  box-shadow: rgba(47, 50, 53, 0.932) 0px 0px 12px;
 }
 
 .image {

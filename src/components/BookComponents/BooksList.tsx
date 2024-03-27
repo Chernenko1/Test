@@ -19,7 +19,7 @@ export const BooksList = ({ isLoading, load }: IBookList) => {
           <p>Found books: {totalItems}</p>
         </section>
       )}
-      <section className={style.main}>
+      <section className={style.bookList}>
         {books.map((book, ind) => (
           <BookCard
             key={ind}

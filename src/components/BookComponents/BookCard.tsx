@@ -11,7 +11,7 @@ interface IBookCard {
 
 export const BookCard = ({ category, bookName, authors, id, img }: IBookCard) => {
   return (
-    <Link to={`${id}`} key={id} className={style.main}>
+    <Link to={`${id}`} key={id} className={style.bookCard}>
       <article className={style.imageContainer}>
         <img className={style.image} src={img} />
       </article>
