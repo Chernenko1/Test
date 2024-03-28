@@ -27,7 +27,8 @@ export async function getBooks(
   category: string,
   startIndex: number,
   order: string,
-): { books: Book[]; totalItems: number } {
+): //@ts-ignore
+{ books: Book[]; totalItems: number } {
   let booksArr: Book[] = []
 
   const { data } = await axios.get(

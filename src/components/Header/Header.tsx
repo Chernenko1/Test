@@ -14,7 +14,7 @@ interface IHeader {
   isLoad: boolean
 }
 
-export const Header = ({ setCategory, setInput, setOrder, search, isLoad }: IHeader) => {
+export const Header = ({ setCategory, setInput, setOrder, search }: IHeader) => {
   const navigate = useNavigate()
 
   function onSearch() {

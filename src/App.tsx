@@ -1,7 +1,6 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useState } from 'react'
 import { Header } from '@components/Header/Header'
 import { BooksList } from '@components/BookComponents/BooksList'
-import { useGetBooksQuery } from '@store/services/books'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { BookPage } from '@pages/BookPage'
 import { useAppDispatch, useAppSelector } from '@store/hooks'
