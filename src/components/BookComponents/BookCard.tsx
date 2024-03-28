@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import style from './styles/BookCard.module.css'
 
-import noImage from '../../assets/img/no-image.jpg'
+import noImage from '@assets/img/no-image.jpg'
 
 interface IBookCard {
   category: string

@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom'
-import { BookItem } from '../components/BookComponents/BookItem'
+import { BookItem } from '@components/BookComponents/BookItem'
 
 export const BookPage = () => {
   const { id } = useParams()

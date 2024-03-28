@@ -1,5 +1,5 @@
 import { memo } from 'react'
-import { useAppSelector } from '../../redux/hooks'
+import { useAppSelector } from '../../store/hooks'
 import { LoadSpinner } from '../LoadSpinner/LoadSpinner'
 import { BookCard } from './BookCard'
 import style from './styles/BooksList.module.css'

@@ -1,4 +1,4 @@
-import { useAppSelector } from '../../redux/hooks'
+import { useAppSelector } from '@store/hooks'
 import style from './styles/BookItem.module.css'
 
 interface IBook {

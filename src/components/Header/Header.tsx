@@ -2,8 +2,8 @@ import React, { ChangeEvent } from 'react'
 import style from './Header.module.css'
 import { IoSearch } from 'react-icons/io5'
 import { SectionList } from '../SectionList/SectionList'
-import { BOOK_CATEGORIES } from '../../constants/BOOK_CATEGORIES'
-import { SORT_TYPES } from '../../constants/SORT_TYPES'
+import { BOOK_CATEGORIES } from '@constants/BOOK_CATEGORIES'
+import { SORT_TYPES } from '@constants/SORT_TYPES'
 import { useNavigate } from 'react-router-dom'
 
 interface IHeader {

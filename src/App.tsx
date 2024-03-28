@@ -1,11 +1,11 @@
 import { useCallback, useState } from 'react'
-import { Header } from './components/Header/Header'
-import { BooksList } from './components/BookComponents/BooksList'
-import { useGetBooksQuery } from './redux/services/books'
+import { Header } from '@components/Header/Header'
+import { BooksList } from '@components/BookComponents/BooksList'
+import { useGetBooksQuery } from '@store/services/books'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import { BookPage } from './pages/BookPage'
-import { useAppSelector } from './redux/hooks'
-import ErrorBoundary from './components/Error/ErrorBoundary'
+import { BookPage } from '@pages/BookPage'
+import { useAppSelector } from '@store/hooks'
+import ErrorBoundary from '@components/Error/ErrorBoundary'
 
 function App() {
   const [category, setCategory] = useState('')
