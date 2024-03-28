@@ -1,4 +1,4 @@
-import { createSlice, current, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice, current } from '@reduxjs/toolkit'
 import { RootState } from '../store'
 
 interface IBooksState {
@@ -16,6 +16,7 @@ interface IBooksState {
 }
 
 const initialState: IBooksState = {
+  //@ts-ignore
   books: [],
   totalItems: 0,
 }
@@ -30,6 +31,7 @@ export const booksSlice = createSlice({
     },
     addBooks: (state, action) => {
       let books = current(state.books)
+      //@ts-ignore
       state.books = [...books, ...action.payload.books]
       state.totalItems = action.payload.totalItems
     },

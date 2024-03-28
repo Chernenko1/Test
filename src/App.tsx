@@ -1,42 +1,46 @@
 import { useCallback, useState } from 'react'
 import { Header } from '@components/Header/Header'
 import { BooksList } from '@components/BookComponents/BooksList'
-import { useGetBooksQuery } from '@store/services/books'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { BookPage } from '@pages/BookPage'
-import { useAppSelector } from '@store/hooks'
-import ErrorBoundary from '@components/Error/ErrorBoundary'
+import { useAppDispatch, useAppSelector } from '@store/hooks'
+import { addBooks, setBooks } from '@store/slices/booksSlice'
+import { getBooks } from './utils/getBooks'
 
 function App() {
   const [category, setCategory] = useState('')
   const [order, setOrder] = useState('relevance')
   const [input, setInput] = useState('')
-  const [searchData, setSearchData] = useState({ name: '', category: '', sort: 'relevance', startIndex: 0 })
+  const [isLoading, setLoading] = useState(false)
 
-  const { isFetching } = useGetBooksQuery(searchData)
+  const { books } = useAppSelector((state) => state.books)
 
-  const books = useAppSelector((state) => state.books.books)
+  const dispatch = useAppDispatch()
 
-  function search() {
-    setSearchData({ category, name: input, sort: order, startIndex: 0 })
+  async function search() {
+    setLoading(true)
+
+    let response = await getBooks(input, category, 0, order)
+
+    dispatch(setBooks(response))
+
+    setLoading(false)
   }
 
-  const loadMore = useCallback(() => {
-    setSearchData({ category, name: input, sort: order, startIndex: books.length + 1 })
-  }, [])
+  const loadMore = useCallback(async () => {
+    setLoading(true)
 
+    let response = await getBooks(input, category, books.length + 1, order)
+
+    dispatch(addBooks(response))
+
+    setLoading(false)
+  }, [])
   return (
     <BrowserRouter>
-      <Header setInput={setInput} setCategory={setCategory} setOrder={setOrder} search={search} isLoad={isFetching} />
+      <Header setInput={setInput} setCategory={setCategory} setOrder={setOrder} search={search} isLoad={isLoading} />
       <Routes>
-        <Route
-          path='/'
-          element={
-            <ErrorBoundary>
-              <BooksList isLoading={isFetching} load={loadMore} />
-            </ErrorBoundary>
-          }
-        />
+        <Route path='/' element={<BooksList isLoading={isLoading} load={loadMore} />} />
         <Route path='/:id' element={<BookPage />} />
       </Routes>
     </BrowserRouter>

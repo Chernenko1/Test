@@ -1,23 +1,42 @@
-import { Component } from 'react'
+import { LoadSpinner } from '@components/LoadSpinner/LoadSpinner'
+import { Component, ErrorInfo, ReactNode } from 'react'
 
-class ErrorBoundary extends Component {
-  state = {
-    error: null,
+interface ErrorBoundaryProps {
+  children: ReactNode
+}
+
+interface ErrorBoundaryState {
+  hasError: boolean
+  error: Error | null
+}
+
+class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
+  constructor(props: ErrorBoundaryProps) {
+    super(props)
+    this.state = { hasError: false, error: null }
   }
-  static getDerivedStateFromError(error) {
-    return { error }
+
+  static getDerivedStateFromError(_: Error): ErrorBoundaryState {
+    return { hasError: true, error: _ }
   }
-  render() {
+
+  componentDidCatch(error: Error, errorInfo: ErrorInfo): void {
+    console.error('Error caught by ErrorBoundary:', error, errorInfo)
+  }
+
+  render(): ReactNode {
     const { error } = this.state
 
-    if (error) {
+    if (this.state.hasError) {
+      // You can render any custom fallback UI
       return (
-        <div>
-          <p>Seems like an error occured!</p>
-          <p>{error.message}</p>
-        </div>
+        <>
+          <LoadSpinner />
+          <div>Something went wrong. {error?.message}</div>
+        </>
       )
     }
+
     return this.props.children
   }
 }

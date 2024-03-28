@@ -14,7 +14,7 @@ interface IHeader {
   isLoad: boolean
 }
 
-export const Header = ({ setCategory, setInput, setOrder, search, isLoad }: IHeader) => {
+export const Header = ({ setCategory, setInput, setOrder, search }: IHeader) => {
   const navigate = useNavigate()
 
   function onSearch() {
@@ -50,14 +50,8 @@ export const Header = ({ setCategory, setInput, setOrder, search, isLoad }: IHea
         </label>
 
         <div className={style.selectionWrapper}>
-          <div className={style.selectionContainer}>
-            <p className={style.selectionTitle}>Categories</p>
-            <SectionList option={BOOK_CATEGORIES} onChange={changeCategory} />
-          </div>
-          <div className={style.selectionContainer}>
-            <p className={style.selectionTitle}>Sorting by</p>
-            <SectionList option={SORT_TYPES} onChange={changeOrderBy} />
-          </div>
+          <SectionList option={BOOK_CATEGORIES} onChange={changeCategory} title='Categories' />
+          <SectionList option={SORT_TYPES} onChange={changeOrderBy} title='Sorting By' />
         </div>
       </header>
     </article>
