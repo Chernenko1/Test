@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { Header } from '@components/Header/Header'
 import { BooksList } from '@components/BookComponents/BooksList'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
@@ -12,6 +12,7 @@ function App() {
   const [order, setOrder] = useState('relevance')
   const [input, setInput] = useState('')
   const [isLoading, setLoading] = useState(false)
+  const isStart = useRef<boolean>(true)
 
   const { books } = useAppSelector((state) => state.books)
 
@@ -24,6 +25,7 @@ function App() {
 
     dispatch(setBooks(response))
 
+    isStart.current = false
     setLoading(false)
   }
 
@@ -40,7 +42,7 @@ function App() {
     <BrowserRouter>
       <Header setInput={setInput} setCategory={setCategory} setOrder={setOrder} search={search} isLoad={isLoading} />
       <Routes>
-        <Route path='/' element={<BooksList isLoading={isLoading} load={loadMore} />} />
+        <Route path='/' element={<BooksList isLoading={isLoading} load={loadMore} isStart={isStart} />} />
         <Route path='/:id' element={<BookPage />} />
       </Routes>
     </BrowserRouter>
