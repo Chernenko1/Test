@@ -59,8 +59,6 @@ export const Header = ({ setCategory, setInput, setOrder, search, isLoad }: IHea
             <SectionList option={SORT_TYPES} onChange={changeOrderBy} />
           </div>
         </div>
-
-        {/*Вынести  в отдельный компонент */}
       </header>
     </article>
   )

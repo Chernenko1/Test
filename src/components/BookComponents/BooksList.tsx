@@ -11,7 +11,6 @@ interface IBookList {
 
 export const BooksList = memo(function BookList({ isLoading, load }: IBookList) {
   const { books, totalItems } = useAppSelector((state) => state.books)
-  console.log(isLoading)
 
   return (
     <article>
