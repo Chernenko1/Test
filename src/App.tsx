@@ -21,10 +21,6 @@ function App() {
     setSearchData({ category, name: input, sort: order, startIndex: 0 })
   }
 
-  function handleLoad() {
-    setSearchData({ category, name: input, sort: order, startIndex: books.length + 1 })
-  }
-
   const loadMore = useCallback(() => {
     setSearchData({ category, name: input, sort: order, startIndex: books.length + 1 })
   }, [])
