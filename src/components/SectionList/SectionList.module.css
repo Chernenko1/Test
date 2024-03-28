@@ -1,0 +1,17 @@
+.selectionContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  column-gap: 20px;
+  /* background-color: rgb(149, 149, 217); */
+}
+
+.selectionTitle {
+  font-size: 24px;
+  color: white;
+}
+
+.a {
+  font-size: 24px;
+  color: white;
+}
