@@ -1,4 +1,4 @@
-import { createSlice, current, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice, current } from '@reduxjs/toolkit'
 import { RootState } from '../store'
 
 interface IBooksState {
